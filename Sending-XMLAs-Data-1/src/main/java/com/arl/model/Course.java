@@ -1,0 +1,15 @@
+package com.arl.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Course {
+
+	private Integer id;
+	
+	private String name;
+}

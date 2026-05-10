@@ -1,0 +1,18 @@
+package com.arl.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.arl.model.Student;
+
+@RestController
+@RequestMapping("/student")
+public class StudentManagementController {
+
+	 @GetMapping("/getData")
+      public String getStudentDetails() {
+    	  
+		 Student st=new Student(102, "Atharv Lugade", getStudentDetails(), null, null, null)
+      }
+}

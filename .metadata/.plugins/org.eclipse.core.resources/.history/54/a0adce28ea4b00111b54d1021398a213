@@ -1,0 +1,8 @@
+package com.arl.model;
+
+import lombok.Data;
+
+@Data
+public class Customer {
+
+}

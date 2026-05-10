@@ -1,0 +1,17 @@
+package com.arl.model;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class Customer {
+
+	private Integer cno;
+	
+	private String cname;
+	
+	private String cadd;
+	
+	private Double amt;
+}

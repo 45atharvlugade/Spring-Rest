@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Customer.java&apos; to &apos;TakingInput-From-Client-App/src/main/java/com.arl.model&apos;&#x0D;&#x0A;- Original project: &apos;Sending-Json-As-Data&apos;&#x0D;&#x0A;- Destination element: &apos;TakingInput-From-Client-App/src/main/java/com.arl.model&apos;&#x0D;&#x0A;- Original element: &apos;com.arl.model.Customer.java&apos;" description="Copy compilation unit" destination="=TakingInput-From-Client-App/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.arl.model" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.arl.model{Customer.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1778392707157" units="1" version="1.0"/>
+</session>
