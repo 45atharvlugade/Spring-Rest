@@ -1,0 +1,51 @@
+package com.arl.entity;
+
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Version;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Actor {
+
+	
+	private Integer aid;
+	
+	@NonNull
+	private String aname;
+	
+	@NonNull
+	private String category;
+	
+	@NonNull
+	private String fee;
+	
+	@NonNull
+	private LocalDateTime dob;
+	
+	
+	@Version
+	private Integer updateCount;
+	
+	@CreationTimestamp
+	private LocalDateTime creationTime;
+	
+	@UpdateTimestamp
+	private LocalDateTime lastUpdation;
+	
+	private String createdBy;
+	
+	private String status;
+}

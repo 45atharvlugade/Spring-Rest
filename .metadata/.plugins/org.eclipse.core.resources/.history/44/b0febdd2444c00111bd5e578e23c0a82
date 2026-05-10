@@ -1,0 +1,8 @@
+spring.application.name=Mini-Project
+
+server.port=4041
+
+spring.datasource.driver-class-name=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=

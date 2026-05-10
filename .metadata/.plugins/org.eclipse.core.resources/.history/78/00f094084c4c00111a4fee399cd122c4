@@ -1,0 +1,5 @@
+package com.arl.repository;
+
+public interface IActorRepository {
+
+}

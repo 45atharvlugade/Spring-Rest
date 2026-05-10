@@ -1,0 +1,10 @@
+package com.arl.service;
+
+import com.arl.dto.ActorRegistor;
+
+public interface IActorMngmtService {
+
+	public String registerActor(ActorRegistor actor);
+	
+	public String insertActorsBatch(Iterable<ActorRegister> actorsdtos);
+}

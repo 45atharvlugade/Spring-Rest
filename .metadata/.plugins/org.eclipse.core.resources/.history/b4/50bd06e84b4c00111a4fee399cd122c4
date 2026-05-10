@@ -1,0 +1,26 @@
+package com.arl.dto;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.SequenceGenerator;
+import lombok.NonNull;
+
+public class ActorRegistor {
+	
+	private Integer aid;
+	
+	
+	private String aname;
+	
+	
+	private String category;
+	
+	
+	private String fee;
+	
+	
+	private LocalDateTime dob;
+}

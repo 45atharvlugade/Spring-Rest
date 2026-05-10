@@ -1,0 +1,5 @@
+package com.arl.entity;
+
+public class Actor {
+
+}

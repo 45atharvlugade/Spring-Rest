@@ -1,0 +1,12 @@
+package com.arl.service;
+
+import com.arl.dto.ActorRegistor;
+
+public class ActorMngmtService implements IActorMngmtService {
+
+	@Override
+	public String registerActor(ActorRegistor actor) {
+		// Covert ActorRegisterDto to Actor Entity class object
+	}
+
+}

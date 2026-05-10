@@ -1,0 +1,9 @@
+package com.arl.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.arl.entity.Actor;
+
+public interface IActorRepository extends JpaRepository<Actor, Integer> {
+
+}

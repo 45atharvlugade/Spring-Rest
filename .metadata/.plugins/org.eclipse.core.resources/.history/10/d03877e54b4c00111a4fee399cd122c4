@@ -1,0 +1,5 @@
+package com.arl.dto;
+
+public class ActorRegistor {
+
+}
