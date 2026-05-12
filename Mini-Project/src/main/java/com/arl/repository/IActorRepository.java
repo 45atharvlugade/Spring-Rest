@@ -9,7 +9,7 @@ import com.arl.entity.Actor;
 
 public interface IActorRepository extends JpaRepository<Actor, Integer> {
 
-	@Query("delete from Actor where fee>=start and fee<=end")
+	@Query("delete from Actor where fee>=:start and fee<=:end")
 	@Modifying
 	@Transactional
 	public int removeActorsInFeeRange(double start,double end);

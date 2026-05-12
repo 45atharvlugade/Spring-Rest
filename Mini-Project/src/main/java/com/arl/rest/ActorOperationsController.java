@@ -29,6 +29,7 @@ public class ActorOperationsController {
 	public ResponseEntity<String> insertActor(@RequestBody ActorRegistor actor){
 		// user Service
 		
+		// handling the Exception by us
 		try {
 			String msg=service.registerActor(actor);
 			
@@ -59,7 +60,7 @@ public class ActorOperationsController {
 		}
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<?> getActorById(@PathVariable Integer id){
 		try {
 			ActorRegistor ar=service.findActorById(id);
@@ -69,46 +70,38 @@ public class ActorOperationsController {
 		}
 	}
 	
-	@GetMapping("/{category}")
+	// handling the Exception through advice class and ExceptionHandle.
+	
+	@GetMapping("/category/{category}")
 	public ResponseEntity<?> getActorBySameJob(@PathVariable String category){
-		try {
-			
+		
 			Iterable<ActorRegistor> iterable=service.getActorOfSamecategory(category);
 			return new ResponseEntity<Iterable>(iterable,HttpStatus.OK);
-			
-		}catch(Exception e) {
-			return new ResponseEntity<String>("No Actors Found",HttpStatus.UNPROCESSABLE_CONTENT);
-		}
+		
 	}
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> updateActorDetails(@PathVariable Integer id,@RequestBody ActorRegistor ar){
-		try {
+		
 			String msg=service.updateActorDetails(id, ar);
 			return new ResponseEntity<String>(msg,HttpStatusCode.valueOf(200));
-		}catch(Exception e) {
-			return new ResponseEntity<String>("Actor Id Not Found",HttpStatusCode.valueOf(200));
-		}
+		
 	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteActorById( @PathVariable  Integer id){
-		try {
-			String msg=service.removeActorById(id);
+	@DeleteMapping("/{id1}")
+	public ResponseEntity<?> deleteActorById( @PathVariable  Integer id1){
+		
+			String msg=service.removeActorById(id1);
 			return new ResponseEntity<String>(msg,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<String>("Problem in deletion",HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		
 	}
 	
 	@DeleteMapping("/{start}/{end}")
 	public ResponseEntity<?> deleteActorsInRange(@PathVariable Double start,@PathVariable Double end){
-		try {
+		
 			String msg=service.removeActorInRange(start, end);
 			
 			return new ResponseEntity<String>(msg,HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<String>("Error in deletion",HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		
 		}
 }

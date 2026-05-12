@@ -1,0 +1,20 @@
+package com.arl.advice;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class ActorControllerAdvice {
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<String> handleIAE(IllegalArgumentException iae){
+		return new ResponseEntity<String>("problem :: "+iae.getMessage(),HttpStatus.OK);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> handleE(Exception e){
+		return new ResponseEntity<String>("problem :: "+e.getMessage(),HttpStatus.OK);
+	}
+}
