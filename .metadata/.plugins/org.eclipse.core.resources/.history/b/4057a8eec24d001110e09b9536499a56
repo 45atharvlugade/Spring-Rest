@@ -1,0 +1,16 @@
+package com.arl.service;
+
+import com.arl.dto.ActorRegistor;
+
+public interface IActorMngmtService {
+
+	public String registerActor(ActorRegistor actor);
+	
+	public String insertActorsBatch(Iterable<ActorRegistor> actorsdtos);
+	
+	public Iterable<ActorRegistor> getAllActors();
+	
+	public ActorRegistor findActorById(Integer id);
+	
+	public ActorRegistor getActorOfSamecategory(String category);
+}

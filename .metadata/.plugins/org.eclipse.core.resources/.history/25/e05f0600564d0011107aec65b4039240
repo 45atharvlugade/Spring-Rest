@@ -1,0 +1,65 @@
+package com.arl.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.arl.dto.ActorRegistor;
+import com.arl.entity.Actor;
+import com.arl.repository.IActorRepository;
+
+
+@Service
+public class ActorMngmtService implements IActorMngmtService {
+
+	@Autowired
+	private IActorRepository repo;
+	
+	
+	@Override
+	public String registerActor(ActorRegistor actor) {
+		// Covert ActorRegisterDto to Actor Entity class object
+		
+		Actor act=new Actor();
+		BeanUtils.copyProperties(actor, act);
+		act.setCreatedBy(System.getProperty("user.name"));
+		
+		String idVal=repo.save(act).getAid()+" is Saved";
+		return idVal;
+	}
+
+
+	@Override
+	public String insertActorsBatch(Iterable<ActorRegistor> actorsdtos) {
+		List<Actor> list=new ArrayList<Actor>();
+		
+		actorsdtos.forEach(dto->{
+			Actor actor=new Actor();
+			actor.setCreatedBy(System.getProperty("user.name"));
+			list.add(actor);
+		});
+		
+		repo.saveAll(list);
+		return "All Actors Saved";
+	}
+
+
+	@Override
+	public Iterable<ActorRegistor> getAllActors() {
+		List<Actor> list=repo.findAll();
+		
+		List<ActorRegistor> listAR= new ArrayList<ActorRegistor>();
+		
+		list.forEach(a->{
+			ActorRegistor ar = new ActorRegistor();
+			BeanUtils.copyProperties(a, ar);
+			listAR.add(ar);
+		});
+		
+		return listAR;
+	}
+
+}

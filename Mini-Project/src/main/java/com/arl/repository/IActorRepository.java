@@ -1,9 +1,16 @@
 package com.arl.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.arl.entity.Actor;
 
 public interface IActorRepository extends JpaRepository<Actor, Integer> {
 
+	@Query("delete from Actor where fee>=start and fee<=end")
+	@Modifying
+	@Transactional
+	public int removeActorsInFeeRange(double start,double end);
 }

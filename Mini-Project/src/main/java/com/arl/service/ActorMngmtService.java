@@ -2,9 +2,11 @@ package com.arl.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.arl.dto.ActorRegistor;
@@ -38,7 +40,7 @@ public class ActorMngmtService implements IActorMngmtService {
 		
 		actorsdtos.forEach(dto->{
 			Actor actor=new Actor();
-			BeanUtils.copyProperties(dto, list);
+			BeanUtils.copyProperties(dto, actor);
 			actor.setCreatedBy(System.getProperty("user.name"));
 			list.add(actor);
 		});
@@ -47,4 +49,84 @@ public class ActorMngmtService implements IActorMngmtService {
 		return "All Actors Saved";
 	}
 
+
+	@Override
+	public Iterable<ActorRegistor> getAllActors() {
+		List<Actor> list=repo.findAll();
+		
+		List<ActorRegistor> listAR= new ArrayList<ActorRegistor>();
+		
+		list.forEach(a->{
+			ActorRegistor ar = new ActorRegistor();
+			BeanUtils.copyProperties(a, ar);
+			listAR.add(ar);
+		});
+		
+		return listAR;
+	}
+
+
+	@Override
+	public ActorRegistor findActorById(Integer id) {
+		Optional<Actor> opt=repo.findById(id);
+		
+		if(opt.isPresent()) {
+			Actor actor=opt.get();
+			ActorRegistor ar=new ActorRegistor();
+			BeanUtils.copyProperties(actor, ar);
+			return ar;
+		}else {
+			throw new IllegalArgumentException("id Not Found");		}
+	}
+
+
+	@Override
+	public Iterable<ActorRegistor> getActorOfSamecategory(String category) {
+		Actor actor=new Actor();
+		actor.setCategory(category);
+		
+		Example<Actor> examples=Example.of(actor);
+		List<ActorRegistor> list=new  ArrayList<ActorRegistor>();
+		
+		repo.findAll(examples).forEach(dto->{
+			ActorRegistor ar=new ActorRegistor();
+			BeanUtils.copyProperties(dto, ar);
+			list.add(ar);
+		});
+		return list;
+	}
+
+
+	@Override
+	public String updateActorDetails(int aid,ActorRegistor ar) {
+		Optional<Actor> opt=repo.findById(aid);
+		if(opt.isPresent()) {
+			Actor actor=opt.get();
+            BeanUtils.copyProperties(ar, actor);
+            repo.save(actor);
+            return "User Details Are Updated";
+			
+		}else {
+			return "Error User Id Not found";
+		}
+	}
+
+
+	@Override
+	public String removeActorById(Integer id) {
+		
+		Actor actor=repo.findById(id).orElseThrow(()-> new IllegalArgumentException("Actor Id not found"));
+		repo.delete(actor);
+		return "Actor of Actor id :"+id+" is deleted";
+	}
+
+
+	@Override
+	public String removeActorInRange(Double start, Double end) {
+		int count=repo.removeActorsInFeeRange(start, end);
+		return count+" actors are deleted";
+	}
+	
+	
+	
 }

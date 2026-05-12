@@ -7,4 +7,16 @@ public interface IActorMngmtService {
 	public String registerActor(ActorRegistor actor);
 	
 	public String insertActorsBatch(Iterable<ActorRegistor> actorsdtos);
+	
+	public Iterable<ActorRegistor> getAllActors();
+	
+	public ActorRegistor findActorById(Integer id);
+	
+	public Iterable<ActorRegistor> getActorOfSamecategory(String category);
+	
+	public String updateActorDetails(int actorId,ActorRegistor ar);
+	
+	public String removeActorById(Integer id);
+	
+	public String removeActorInRange(Double start,Double end);
 }
